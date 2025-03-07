@@ -34,5 +34,6 @@ In this project my aim is to analyze the frequency of my existential crises and 
 - **Regression Analysis:** 
 	- Statistical methods will be applied to investigate the impact of various factors such as departure time and weather on travel duration and stress levels.
 
-
+## Expected Outcome
+Insights: I expect to uncover patterns that link existential crises with certain daily events or routines, such as lack of sleep, high stress, or looming deadlines
 
