@@ -12,7 +12,7 @@ In this project my aim is to analyze the frequency of my existential crises and 
 - **Sleep Quality**: 1-10, I will be using the same smartwatch and same app to collect the data.
 - **Social Interaction**: In terms of numbers, it will start with 0 and with every non-family member who I talk more than 10 minutes I will add one to it.
 - **Did I Think About It**: YES or NO, checking if I thought about this project that day. (excluding data entry times etc.)
-- **Existential Crises**: YES or NO, will be marked by me.
+- **Existential Crises**: From 0 to infinity, will be marked by me.
 
 # DATA COLLECTION
 - Data will be collected for 35 days. (10th March to 13th April)
