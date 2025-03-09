@@ -10,7 +10,7 @@ In this project my aim is to analyze the frequency of my existential crises and 
 - **Travel Time**: In terms of minutes or hours, will be using Google Maps to check it. 
 - **Sleep Time**: In terms of hours, will be using a smartwatch to collect the data.
 - **Sleep Quality**: 1-10, I will be using the same smartwatch and same app to collect the data.
-- **Social Interaction**: In terms of numbers, it will start with 0 and with every non-family member who I talk more than 10 minutes I will add one to it.
+- **Social Interaction**: In terms of numbers, it will start with 0 and with every non-family member who I talk more than 3 minutes I will add one to it.
 - **Did I Think About It**: YES or NO, checking if I thought about this project that day. (excluding data entry times etc.)
 - **Existential Crises**: From 0 to infinity, will be marked by me.
 
