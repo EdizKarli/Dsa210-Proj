@@ -34,6 +34,12 @@ In this project my aim is to analyze the frequency of my existential crises and 
 - **Regression Analysis:** 
 	- Statistical methods will be applied to investigate the impact of various factors such as departure time and weather on travel duration and stress levels.
 
+## Hypothesis
+I hypothesize that existential crises are more frequent on days with:
+- Less sleep and lower sleep quality
+- More stressful academic events, such as exams and project deadlines.
+- Lower social interaction, which could correlate with increased self-reflection.
+
 ## Expected Outcome
 Insights: I expect to uncover patterns that link existential crises with certain daily events or routines, such as lack of sleep, high stress, or looming deadlines
 
