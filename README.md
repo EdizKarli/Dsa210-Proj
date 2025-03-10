@@ -42,4 +42,8 @@ I hypothesize that existential crises are more frequent on days with:
 
 ## Expected Outcome
 Insights: I expect to uncover patterns that link existential crises with certain daily events or routines, such as lack of sleep, high stress, or looming deadlines
+## Expected Visualizations
+-Time-Series Plots: To track existential crises over time and look for trends.
+-Correlation Heatmaps: To see how different factors relate to existential crises.
+-Regression Models: To quantify how much each factor contributes to crisis frequency
 
