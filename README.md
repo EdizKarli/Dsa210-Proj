@@ -15,7 +15,7 @@ In this project my aim is to analyze the frequency of my existential crises and 
 - **Existential Crises**: From 0 to infinity, will be marked by me.
 
 # DATA COLLECTION
-- Data will be collected for 35 days. (10th March to 13th April)
+- Data will be collected for 30 days. (14th March to 13th April)
 - Sources:
     - Smartwatch application for sleep time and quality
     - Google Maps for school time and travel time
