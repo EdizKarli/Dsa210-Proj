@@ -1,7 +1,7 @@
-# My Existential Crisis
+# My Social Media Usage
 ## PROJECT IDEA and MOTIVATION
 
-In this project my aim is to analyze the frequency of my existential crises and how various factors throughout the day influence it. The goal is to understand whether there is a real relation between these thoughts and my regular daily routine or if they occur regardless of what I do. By analyzing factors such as school attendance, exam and project schedules, travel time, sleep time and quality, amount of social interaction I had in a day and checking if I was thinking about this particular project before or after having one of those thoughts, I hope to uncover patterns that could help me understand or not understand the root of these existential thoughts. 
+In this project my aim is to analyze the frequency of my social media usage and how various factors throughout the day influence it. The goal is to understand whether there is a real relation between the social media usage and my regular daily routine. By analyzing factors such as school attendance, exam and project schedules, travel time, sleep time and quality, amount of social interaction I had in a day, I hope to uncover patterns that could help me understand the reasoning of my time spent on social media. 
 
 ##  DATASET DESCRIPTION 
 - **Date** : Data entry day
@@ -11,20 +11,18 @@ In this project my aim is to analyze the frequency of my existential crises and 
 - **Sleep Time**: In terms of hours, will be using a smartwatch to collect the data.
 - **Sleep Quality**: 1-10, I will be using the same smartwatch and same app to collect the data.
 - **Social Interaction**: In terms of numbers, it will start with 0 and with every non-family member who I talk more than 3 minutes I will add one to it.
-- **Did I Think About It**: YES or NO, checking if I thought about this project that day. (excluding data entry times etc.)
-- **Existential Crises**: 0 = No thoughts, 1 = Brief passing thought, 2-4 = Mild/moderate crisis (minutes of reflection), 5+ = Severe (interferes with daily tasks, strong emotional impact)
-
+- **Reddit Usage**: Will be collected from the settings part of my smart phone
+- **Instagram Usage**: Will be collected from the settings part of my smart phone
 # DATA COLLECTION
 - Data will be collected for 30 days. (14th March to 13th April)
 - Sources:
     - Smartwatch application for sleep time and quality
     - Google Maps for school time and travel time
-    - Myself for others
+    - Settings part of my smart phone to gather hourly usage of two social media I use (Reddit and Instagram)
 - To ensure consistency and minimize bias:
     - Information will be recorded daily
     - Data will be systematically organized and accessible.
     - Confounding variables and outliers will be carefully considered to ensure the accuracy and reliability of the analysis.
-    - I will try not to think about it too much.
 
 #### **Data Preparation and Analysis** 
 - At the end of the data collection period: 
@@ -35,15 +33,15 @@ In this project my aim is to analyze the frequency of my existential crises and 
 	- Statistical methods will be applied to investigate the impact of various factors such as departure time and weather on travel duration and stress levels.
 
 ## Hypothesis
-I hypothesize that existential crises are more frequent on days with:
+I hypothesize that my social media usage is more frequent on days with:
 - Less sleep and lower sleep quality
 - More stressful academic events, such as exams and project deadlines.
-- Lower social interaction, which could correlate with increased self-reflection.
+- Lower social interaction.
 
 ## Expected Outcome
-Insights: I expect to uncover patterns that link existential crises with certain daily events or routines, such as lack of sleep, high stress, or looming deadlines
+Insights: I expect the usage of social media to increase when I have less sleep, have lesser social interaction and have longer travel and school time.
 ## Expected Visualizations
--Time-Series Plots: To track existential crises over time and look for trends.
--Correlation Heatmaps: To see how different factors relate to existential crises.
--Regression Models: To quantify how much each factor contributes to crisis frequency
+-Time-Series Plots: To track social media usage over time and look for trends.
+-Correlation Heatmaps: To see how different factors relate to social media usage.
+-Regression Models: To quantify how much each factor contributes to usage frequency
 
