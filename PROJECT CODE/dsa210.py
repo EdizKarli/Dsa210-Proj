@@ -13,6 +13,17 @@ df = pd.read_excel('/content/drive/MyDrive/dsa210data.xlsx')
 print("\nMissing Values:")
 print(df.isnull().sum())
 
+# Check column names
+print("Available columns:", df.columns.tolist())
+
+# Check data types
+print("\nData types:")
+print(df.dtypes)
+
+# Check first few rows
+print("\nFirst few rows:")
+print(df.head())
+
 # HISTOGRAM VISUALIZATIONS
 print("\n" + "="*50)
 print("HISTOGRAM VISUALIZATIONS")
@@ -20,7 +31,6 @@ print("="*50)
 
 # Histograms for numerical columns (excluding Homework/Project)
 numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns
-numerical_cols = numerical_cols.drop('Homework/Project') if 'Homework/Project' in numerical_cols else numerical_cols
 
 # Calculate number of rows needed (3 plots per row)
 num_cols = len(numerical_cols)
@@ -35,6 +45,10 @@ for i, col in enumerate(numerical_cols, 1):
         temp_data = pd.DataFrame({col: df[col]/60})
         sns.histplot(data=temp_data, x=col)
         plt.xlabel(f'{col} (Hours)')
+    elif col == 'Homework/Project':
+        temp_data = df[col].map({1: 'HW/Proj Exists', 0: "HW/Proj Doesn't Exist"})
+        sns.countplot(x=temp_data)
+        plt.xlabel('Homework/Project Status')
     else:
         sns.histplot(data=df, x=col)
     plt.title(f'Distribution of {col}')
@@ -68,15 +82,15 @@ print("="*50)
 
 # Create correlation matrices for different combinations
 # 1. Instagram correlations
-instagram_corr = df[['School Time', 'Travel Time', 'Sleep Time', 'Sleep Quality', 
+instagram_corr = df[['School Time', 'Travel Time', 'Sleep Time', 'Sleep Quality',
                     'Social Interaction', 'Instagram Usage']].corr()
 
 # 2. Reddit correlations
-reddit_corr = df[['School Time', 'Travel Time', 'Sleep Time', 'Sleep Quality', 
+reddit_corr = df[['School Time', 'Travel Time', 'Sleep Time', 'Sleep Quality',
                   'Social Interaction', 'Reddit Usage']].corr()
 
 # 3. Combined correlations
-combined_corr = df[['Instagram Usage', 'Reddit Usage', 'School Time', 'Travel Time', 
+combined_corr = df[['Instagram Usage', 'Reddit Usage', 'School Time', 'Travel Time',
                    'Sleep Time', 'Sleep Quality', 'Social Interaction']].corr()
 
 # Visualize correlation matrices in a 3x1 layout
@@ -99,6 +113,189 @@ plt.title('Combined Correlations')
 
 plt.tight_layout()
 plt.show()
+
+# Calculate average metrics for different activities
+daily_averages = df.agg({
+    'School Time': lambda x: (x.mean()/60).round(2),  # Convert to hours
+    'Travel Time': lambda x: (x.mean()/60).round(2),  # Convert to hours
+    'Sleep Time': lambda x: (x.mean()/60).round(2),   # Convert to hours
+    'Instagram Usage': 'mean',
+    'Reddit Usage': 'mean'
+}).round(2)
+
+print("Daily Averages (Time in Hours):")
+print(daily_averages)
+
+# Compare School Time vs Reddit Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['School Time']/60, df['Reddit Usage'])
+plt.xlabel('School Time')
+plt.ylabel('Reddit Usage')
+plt.title('School Time vs Reddit Usage')
+plt.show()
+
+# Compare School Time vs Instagram Usage
+plt.figure(figsize=(10, 6))
+sns.scatterplot(data=df, x=df['School Time']/60, y='Instagram Usage')
+plt.xlabel('School Time (Hours)')
+plt.ylabel('Instagram Usage Usage')
+plt.title('School Time vs Instagram Usage')
+plt.show()
+
+#Compare Travel Time vs Reddit Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Travel Time']/60, df['Reddit Usage'])
+plt.xlabel('Travel Time')
+plt.ylabel('Reddit Usage')
+plt.title('Travel Time vs Reddit Usage')
+plt.show()
+
+#Compare Travel Time vs Instagram Usage Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Travel Time']/60, df['Instagram Usage'])
+plt.xlabel('Travel Time')
+plt.ylabel('Instagram Usage')
+plt.title('Travel Time vs Instagram Usage')
+plt.show()
+
+#Compare Sleep Time vs Reddit Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Sleep Time']/60, df['Reddit Usage'])
+plt.xlabel('Sleep Time')
+plt.ylabel('Reddit Usage')
+plt.title('Sleep Time vs Reddit Usage')
+plt.show()
+
+#Compare Sleep Time vs Instagram Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Sleep Time']/60, df['Instagram Usage'])
+plt.xlabel('Sleep Time')
+plt.ylabel('Instagram Usage')
+plt.title('Sleep Time vs Instagram Usage')
+plt.show()
+
+#Compare Sleep Quality vs Reddit Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Sleep Quality'], df['Reddit Usage'])
+plt.xlabel('Sleep Quality')
+plt.ylabel('Reddit Usage')
+plt.title('Sleep Quality vs Reddit Usage')
+plt.show()
+
+#Compare Sleep Quality vs Instagram Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Sleep Quality'], df['Instagram Usage'])
+plt.xlabel('Sleep Quality')
+plt.ylabel('Instagram Usage')
+plt.title('Sleep Quality vs Instagram Usage')
+plt.show()
+
+#Compare Social Interaction vs Reddit Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Social Interaction'], df['Reddit Usage'])
+plt.xlabel('Social Interaction')
+plt.ylabel('Reddit Usage')
+plt.title('Social Interaction vs Reddit Usage')
+plt.show()
+
+#Compare Social Interaction vs Instagram Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Social Interaction'], df['Instagram Usage'])
+plt.xlabel('Social Interaction')
+plt.ylabel('Instagram Usage')
+plt.title('Social Interaction vs Instagram Usage')
+plt.show()
+
+#Compare HW/Proj vs Reddit Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Homework/Project'], df['Reddit Usage'])
+plt.xlabel('Homework/Project')
+plt.ylabel('Reddit Usage')
+plt.title('Homework/Project vs Reddit Usage')
+plt.show()
+
+#Compare HW/Proj vs Instagram Usage
+plt.figure(figsize=(10, 6))
+plt.scatter(df['Homework/Project'], df['Instagram Usage'])
+plt.xlabel('Homework/Project')
+plt.ylabel('Instagram Usage')
+plt.title('Homework/Project vs Instagram Usage')
+plt.show()
+
+# List of pairs to analyze
+pairs = [
+    ('School Time', 'Instagram Usage'),
+    ('School Time', 'Reddit Usage'),
+    ('Travel Time', 'Instagram Usage'),
+    ('Travel Time', 'Reddit Usage'),
+    ('Sleep Time', 'Instagram Usage'),
+    ('Sleep Time', 'Reddit Usage'),
+    ('Sleep Quality', 'Instagram Usage'),
+    ('Sleep Quality', 'Reddit Usage')
+]
+
+# Perform correlation analysis and create scatter plots for each pair
+for time_var, usage_var in pairs:
+    # Calculate correlation
+    corr_coef, p_value = stats.pearsonr(df[time_var], df[usage_var])
+
+    # Create scatter plot with regression line
+    plt.figure(figsize=(10, 6))
+    if time_var in ['School Time', 'Travel Time', 'Sleep Time']:
+        # Convert time to hours for display
+        sns.regplot(x=df[time_var]/60, y=df[usage_var], data=df)
+        plt.xlabel(f'{time_var} (Hours)')
+    else:
+        sns.regplot(x=df[time_var], y=df[usage_var], data=df)
+        plt.xlabel(time_var)
+
+    plt.ylabel(usage_var)
+    plt.title(f'Correlation between {time_var} and {usage_var}\n'
+              f'Correlation: {corr_coef:.3f}, P-value: {p_value:.3f}')
+    plt.show()
+
+    # Print detailed statistics
+    print(f"\nCorrelation Analysis: {time_var} vs {usage_var}")
+    print(f"Correlation coefficient: {corr_coef:.3f}")
+    print(f"P-value: {p_value:.3f}")
+    if p_value < 0.05:
+        print("This correlation is statistically significant (p < 0.05)")
+    else:
+        print("This correlation is not statistically significant (p >= 0.05)")
+    print("-" * 50)
+
+#additional pairs
+
+additional_pairs = [
+    ('Social Interaction', 'Instagram Usage'),
+    ('Social Interaction', 'Reddit Usage'),
+    ('Homework/Project' ,'Instagram Usage'),
+    ('Homework/Project', 'Reddit Usage'),
+]
+
+# Perform correlation analysis and create scatter plots for each new pair
+for time_var, usage_var in additional_pairs:
+    # Calculate correlation
+    corr_coef, p_value = stats.pearsonr(df[time_var], df[usage_var])
+
+    # Create scatter plot with regression line
+    plt.figure(figsize=(10, 6))
+    sns.regplot(x=df[time_var], y=df[usage_var], data=df)
+    plt.xlabel(time_var)
+    plt.ylabel(usage_var)
+    plt.title(f'Correlation between {time_var} and {usage_var}\n'
+              f'Correlation: {corr_coef:.3f}, P-value: {p_value:.3f}')
+    plt.show()
+
+    # Print detailed statistics
+    print(f"\nCorrelation Analysis: {time_var} vs {usage_var}")
+    print(f"Correlation coefficient: {corr_coef:.3f}")
+    print(f"P-value: {p_value:.3f}")
+    if p_value < 0.05:
+        print("This correlation is statistically significant (p < 0.05)")
+    else:
+        print("This correlation is not statistically significant (p >= 0.05)")
+    print("-" * 50)
 
 # STATISTICAL TEST RESULTS
 print("\n" + "="*50)
@@ -160,110 +357,16 @@ print("="*50)
 for var in variables_to_test:
     perform_statistical_tests(var, 'Reddit Usage')
 
-# Calculate average metrics for different activities
-daily_averages = df.agg({
-    'School Time': lambda x: (x.mean()/60).round(2),  # Convert to hours
-    'Travel Time': lambda x: (x.mean()/60).round(2),  # Convert to hours
-    'Sleep Time': lambda x: (x.mean()/60).round(2),   # Convert to hours
-    'Instagram Usage': 'mean',
-    'Reddit Usage': 'mean'
-}).round(2)
-
-print("Daily Averages (Time in Hours):")
-print(daily_averages)
-
-# Compare Reddit vs Instagram usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['School Time'], df['Reddit Usage'])
-plt.xlabel('School Time')
-plt.ylabel('Reddit Usage')
-plt.title('School Time vs Reddit Usage')
+df['HW/Proj Label'] = df['Homework/Project'].map({0: "Doesn't Exist", 1: 'Exists'})
+sns.boxplot(data=df, x='HW/Proj Label', y='Reddit Usage')
+plt.title('Reddit Usage vs Homework/Project Presence')
+plt.ylabel('Reddit Usage (e.g., minutes)')
+plt.xlabel('Homework/Project')
 plt.show()
 
-# Relationship between Sleep Time and Sleep Quality
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=df, x=df['School Time']/60, y='Instagram Usage')
-plt.xlabel('School Time (Hours)')
-plt.title('School Time vs Instagram Usage')
+df['HW/Proj Label'] = df['Homework/Project'].map({0: "Doesn't Exist", 1: 'Exists'})
+sns.boxplot(data=df, x='HW/Proj Label', y='Instagram Usage')
+plt.title('Instagram Usage vs Homework/Project Presence')
+plt.ylabel('Instagram Usage (e.g., minutes)')
+plt.xlabel('Homework/Project')
 plt.show()
-
-# How school time affects sleep quality
-plt.figure(figsize=(10, 6))
-sns.regplot(x=df['School Time']/60, y=df['Sleep Quality'], data=df)
-plt.xlabel('School Time (Hours)')
-plt.title('Impact of School Time on Sleep Quality')
-plt.show()
-
-# List of pairs to analyze
-pairs = [
-    ('School Time', 'Instagram Usage'),
-    ('School Time', 'Reddit Usage'),
-    ('Travel Time', 'Instagram Usage'),
-    ('Travel Time', 'Reddit Usage'),
-    ('Sleep Time', 'Instagram Usage'),
-    ('Sleep Time', 'Reddit Usage'),
-    ('Sleep Quality', 'Instagram Usage'),
-    ('Sleep Quality', 'Reddit Usage')
-]
-
-# Perform correlation analysis and create scatter plots for each pair
-for time_var, usage_var in pairs:
-    # Calculate correlation
-    corr_coef, p_value = stats.pearsonr(df[time_var], df[usage_var])
-
-    # Create scatter plot with regression line
-    plt.figure(figsize=(10, 6))
-    if time_var in ['School Time', 'Travel Time', 'Sleep Time']:
-        # Convert time to hours for display
-        sns.regplot(x=df[time_var]/60, y=df[usage_var], data=df)
-        plt.xlabel(f'{time_var} (Hours)')
-    else:
-        sns.regplot(x=df[time_var], y=df[usage_var], data=df)
-        plt.xlabel(time_var)
-
-    plt.ylabel(usage_var)
-    plt.title(f'Correlation between {time_var} and {usage_var}\n'
-              f'Correlation: {corr_coef:.3f}, P-value: {p_value:.3f}')
-    plt.show()
-
-    # Print detailed statistics
-    print(f"\nCorrelation Analysis: {time_var} vs {usage_var}")
-    print(f"Correlation coefficient: {corr_coef:.3f}")
-    print(f"P-value: {p_value:.3f}")
-    if p_value < 0.05:
-        print("This correlation is statistically significant (p < 0.05)")
-    else:
-        print("This correlation is not statistically significant (p >= 0.05)")
-    print("-" * 50)
-
-#additional pairs
-
-additional_pairs = [
-    ('Social Interaction', 'Instagram Usage'),
-    ('Social Interaction', 'Reddit Usage'),
-]
-
-# Perform correlation analysis and create scatter plots for each new pair
-for time_var, usage_var in additional_pairs:
-    # Calculate correlation
-    corr_coef, p_value = stats.pearsonr(df[time_var], df[usage_var])
-
-    # Create scatter plot with regression line
-    plt.figure(figsize=(10, 6))
-    sns.regplot(x=df[time_var], y=df[usage_var], data=df)
-    plt.xlabel(time_var)
-    plt.ylabel(usage_var)
-    plt.title(f'Correlation between {time_var} and {usage_var}\n'
-              f'Correlation: {corr_coef:.3f}, P-value: {p_value:.3f}')
-    plt.show()
-
-    # Print detailed statistics
-    print(f"\nCorrelation Analysis: {time_var} vs {usage_var}")
-    print(f"Correlation coefficient: {corr_coef:.3f}")
-    print(f"P-value: {p_value:.3f}")
-    if p_value < 0.05:
-        print("This correlation is statistically significant (p < 0.05)")
-    else:
-        print("This correlation is not statistically significant (p >= 0.05)")
-    print("-" * 50)
-
