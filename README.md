@@ -34,14 +34,16 @@ In this project my aim is to analyze the frequency of my social media usage and 
 
 ## Hypothesis
 I hypothesize that my social media usage is more frequent on days with:
+- More school time and travel time
 - Less sleep and lower sleep quality
 - More stressful academic events, such as exams and project deadlines.
 - Lower social interaction.
-
+  
 ## Expected Outcome
 Insights: I expect the usage of social media to increase when I have less sleep, have lesser social interaction and have longer travel and school time.
 ## Expected Visualizations
 -Time-Series Plots: To track social media usage over time and look for trends.
 -Correlation Heatmaps: To see how different factors relate to social media usage.
--Regression Models: To quantify how much each factor contributes to usage frequency
+-Correlation plots: To show the correlation between two selected data columns.
+-Regression Models: To quantify how much each factor contributes to usage frequency.
 
