@@ -47,3 +47,75 @@ Insights: I expect the usage of social media to increase when I have less sleep,
 -Correlation plots: To show the correlation between two selected data columns.
 -Regression Models: To quantify how much each factor contributes to usage frequency.
 
+## Insights After EDA
+After Exploratory Data Analysis I can say these things about the hypothesis I had at the beginning of the project:
+1-School Time and Travel Time
+-The null hypothesis is that with increased School and Travel time my social media usage will not be affected.
+-By looking at correlation between school time and 2 social media usage data we see that:
+![resim](https://github.com/user-attachments/assets/be19d1e6-761a-4471-9277-8de6d6ac1e34)
+![resim](https://github.com/user-attachments/assets/a4245f56-c673-4d0b-8ada-814a181b3d02)
+
+My Instagram Usage has a statistically significant negative correlation while my Reddit usage has a has a statistically
+significant positive correlation with my school time. p value is smaller than 0.05 so we can say that the null hypothesis is wrong
+and there is a significant relation between my social media usage and school time. Also if we check the Chi-Square Test and the T-Test:
+
+Statistical Tests for School Time vs Instagram Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 10.362
+P-value: 0.001
+T-Test:
+T-statistic: -4.529
+P-value: 0.000
+Interpretation:
+- Chi-Square: Significant relationship found
+- T-Test: Significant difference in means found
+
+Statistical Tests for School Time vs Reddit Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 20.867
+P-value: 0.000
+T-Test:
+T-statistic: 6.805
+P-value: 0.000
+Interpretation:
+- Chi-Square: Significant relationship found
+- T-Test: Significant difference in means found
+
+We can see that relations are significant. We can reject the null hypothesis.
+
+-By looking at correlation between travel time and 2 social media usage data we see that:
+![resim](https://github.com/user-attachments/assets/6abecd6e-3f97-47b8-9d97-60c3e61da813)
+![resim](https://github.com/user-attachments/assets/9f280813-2eb2-4dd5-ba40-3d4ddb7d923e)
+
+My Instagram Usage has a statistically significant negative correlation while my Reddit usage has a has a statistically
+significant positive correlation with my travel time. p value is smaller than 0.05 so we can say that the null hypothesis is wrong
+and there is a significant relation between my social media usage and travel time. Also if we check the Chi-Square Test and the T-Test:
+
+Statistical Tests for Travel Time vs Instagram Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 10.362
+P-value: 0.001
+T-Test:
+T-statistic: -5.073
+P-value: 0.000
+Interpretation:
+- Chi-Square: Significant relationship found
+- T-Test: Significant difference in means found
+
+Statistical Tests for Travel Time vs Reddit Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 15.125
+P-value: 0.000
+T-Test:
+T-statistic: 4.096
+P-value: 0.000
+Interpretation:
+- Chi-Square: Significant relationship found
+- T-Test: Significant difference in means found
+
+
+
