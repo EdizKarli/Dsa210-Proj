@@ -32,12 +32,11 @@ In this project my aim is to analyze the frequency of my social media usage and 
 - **Regression Analysis:** 
 	- Statistical methods will be applied to investigate the impact of various factors such as departure time and weather on travel duration and stress levels.
 
-## Hypothesis
-I hypothesize that my social media usage is more frequent on days with:
-- More school time and travel time
-- Less sleep and lower sleep quality
-- More stressful academic events, such as exams and project deadlines.
-- Lower social interaction.
+## Null Hypothesis
+- School Time and Travel Time has no affect on social media usage.
+- Sleep Time and Sleep Quality has no affect on social media usage.
+- Homework and Projects have no affect on social media usage.
+- Social Interaction has no affect on social media usage.
   
 ## Expected Outcome
 Insights: I expect the usage of social media to increase when I have less sleep, have lesser social interaction and have longer travel and school time.
@@ -49,7 +48,7 @@ Insights: I expect the usage of social media to increase when I have less sleep,
 
 ## Insights After EDA
 After Exploratory Data Analysis I can say these things about the hypothesis I had at the beginning of the project:
-1-School Time and Travel Time
+1-SCHOOL TIME AND TRAVEL TIME 
 -The null hypothesis is that with increased School and Travel time my social media usage will not be affected.
 -By looking at correlation between school time and 2 social media usage data we see that:
 ![resim](https://github.com/user-attachments/assets/be19d1e6-761a-4471-9277-8de6d6ac1e34)
@@ -83,7 +82,7 @@ Interpretation:
 - Chi-Square: Significant relationship found
 - T-Test: Significant difference in means found
 
-We can see that relations are significant. We can reject the null hypothesis.
+We can see that relations are significant. We can reject the null hypothesis. School time affects my social media usage.
 
 -By looking at correlation between travel time and 2 social media usage data we see that:
 ![resim](https://github.com/user-attachments/assets/6abecd6e-3f97-47b8-9d97-60c3e61da813)
@@ -116,6 +115,128 @@ P-value: 0.000
 Interpretation:
 - Chi-Square: Significant relationship found
 - T-Test: Significant difference in means found
+
+We can see that relations are significant. We can reject the null hypothesis. Travel time affects my social media usage
+
+2-SLEEP TIME AND SLEEP QUALITY
+-The null hypothesis is that with increased Sleep Time and Sleep Quality my social media usage will not be affected.
+-By looking at correlation between sleep time and 2 social media usage data we see that:
+![resim](https://github.com/user-attachments/assets/7050345c-dd52-4457-8fe1-d408b70a47c9)
+![resim](https://github.com/user-attachments/assets/f0d62a64-6260-40f5-b78c-5196999e166e)
+
+My Instagram Usage doesn't have a statistically significant correlation while my Reddit Usage has a statistically significant negative correlation with sleep time although not that strong. 
+If we check the Chi Square and T-Test:
+
+Statistical Tests for Sleep Time vs Instagram Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 2.303
+P-value: 0.129
+T-Test:
+T-statistic: 1.941
+P-value: 0.061
+Interpretation:
+- No significant relationships found in any test
+
+Statistical Tests for Sleep Time vs Reddit Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 2.378
+P-value: 0.123
+T-Test:
+T-statistic: -3.333
+P-value: 0.002
+Interpretation:
+- T-Test: Significant difference in means found
+
+If we look at these results, since p value is bigger than 0.05 and the other tests gave no significant relation found for Sleep Time vs. Instagram Usage we can say that the null hypothesis can't be rejected for Instagram Usage.
+However for Reddit Usage the test is significant and the p value is less than 0.05. So we can say that for Reddit Usage vs Sleep Time we can reject the null hypothesis but generally we can not. Because there is a significant relation between Reddit Usage and Sleep Time (negative). 
+
+-By looking at correlation between sleep quality and 2 social media usage data we see that:
+![resim](https://github.com/user-attachments/assets/0d6e5855-52b6-4ce2-9e6b-0d0d82ee09c8)
+![resim](https://github.com/user-attachments/assets/e83ecf25-fd53-4b99-bf92-1279f96e6a07)
+
+My Instagram and Reddit Usage doesn't have a significant relation with Sleep Quality although for Reddit Usage the p value is really close to 0.05 (it is 0.055). If we look at chi square and t-test
+results:
+
+Statistical Tests for Sleep Quality vs Instagram Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 0.232
+P-value: 0.630
+T-Test:
+T-statistic: 0.702
+P-value: 0.487
+Interpretation:
+- No significant relationships found in any test
+
+Statistical Tests for Sleep Quality vs Reddit Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 5.322
+P-value: 0.021
+T-Test:
+T-statistic: -2.099
+P-value: 0.044
+Interpretation:
+- Chi-Square: Significant relationship found
+- T-Test: Significant difference in means found
+
+If we look at the results we can see that for Instagram Usage again there is no significant result. But for Reddit Usage there is a significant relation. The correlation gave no significant relation for Sleep Quality vs Reddit Usage with a very close p value to 0.05 and the Chi-Square and T-Test gave there is significant relation between them. Since there is a different interpretation between different methods we can say that we can not reject null hypothesis. 
+
+3-SOCIAL INTERACTION
+
+The null hypothesis was that Social Interaction has no affect on social media usage. If we look at correlations between Social Interaction vs Reddit and Instagram Usage:
+![resim](https://github.com/user-attachments/assets/d7b93ed5-3c33-4d14-9b67-02aec5697963)
+![resim](https://github.com/user-attachments/assets/9bb08b66-6c53-4e86-961c-ffc75e72081c)
+
+There is no significant relation between Social Interaction and Instagram but for Reddit Usage there is a significant positive correlation. If we look at chi square and t-test:
+
+Statistical Tests for Social Interaction vs Instagram Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 1.802
+P-value: 0.179
+T-Test:
+T-statistic: -2.022
+P-value: 0.051
+Interpretation:
+- No significant relationships found in any test
+
+Statistical Tests for Social Interaction vs Reddit Usage
+==================================================
+Chi-Square Test:
+Chi2 statistic: 3.263
+P-value: 0.071
+T-Test:
+T-statistic: 2.860
+P-value: 0.007
+Interpretation:
+- T-Test: Significant difference in means found
+
+If we look at the results we can say that for Instagram Usage there is no significant relation with Social Interaction. For Reddit, here we also have a significant relation so we can reject the null hypothesis for Reddit Usage vs Social Interaction. Generally we fail to reject it. 
+
+4-HOMEWORK AND PROJECTS
+The null hypothesis was that Homework and Projects have no affect on social media usage. If we look at correlations between HW/Projects vs Reddit and Instagram Usage:
+![resim](https://github.com/user-attachments/assets/6729e3d5-1ead-4979-b7ab-4f3c3bdad9db)
+![resim](https://github.com/user-attachments/assets/1e63e5d1-c10a-4902-b239-807e1e05cce7)
+
+We see that for both there is no significant relation. There is no chi-square and t-test for HW/Projects because the only values they have is either 1 or 0. Instead we have a boxplot visualizations for both:
+![resim](https://github.com/user-attachments/assets/349a90e1-06f6-47fb-b589-3745482400d9)
+![resim](https://github.com/user-attachments/assets/8c2abc6c-3d17-4bcd-a69f-c510c6827ea6)
+
+The mean of Reddit Usage is higher when a homework/project exists. The mean of Instagram usage is lower when a homework/project exists. Logically, if we look at boxplots we see that Reddit Usage is more when there is a homework or project but of course since I wasn't able to make more data interpretations we can not say that we can reject the null hypothesis. 
+
+## EDA END:
+-Logically we can see a pattern here. When I am at school I use Reddit more than Instagram. We can understand it by looking at school time and travel time datas. Also since I sleep less when I go to school my Reddit Usage has a significant relation with Sleep Time and Sleep Quality but of course these are my thoughts. Also since I have more social interaction at school Reddit Usage is also being affected by it. Similarly when I have more homeworks or projects I spend more time at school so it is also affecting Reddit Usage.
+
+
+
+
+
+
+
+
 
 
 
