@@ -48,7 +48,7 @@ Insights: I expect the usage of social media to increase when I have less sleep,
 
 ## Insights After EDA
 After Exploratory Data Analysis I can say these things about the hypothesis I had at the beginning of the project:
-1-SCHOOL TIME AND TRAVEL TIME 
+## 1-SCHOOL TIME AND TRAVEL TIME 
 -The null hypothesis is that with increased School and Travel time my social media usage will not be affected.
 -By looking at correlation between school time and 2 social media usage data we see that:
 ![resim](https://github.com/user-attachments/assets/be19d1e6-761a-4471-9277-8de6d6ac1e34)
@@ -118,7 +118,7 @@ Interpretation:
 
 We can see that relations are significant. We can reject the null hypothesis. Travel time affects my social media usage
 
-2-SLEEP TIME AND SLEEP QUALITY
+## 2-SLEEP TIME AND SLEEP QUALITY
 -The null hypothesis is that with increased Sleep Time and Sleep Quality my social media usage will not be affected.
 -By looking at correlation between sleep time and 2 social media usage data we see that:
 ![resim](https://github.com/user-attachments/assets/7050345c-dd52-4457-8fe1-d408b70a47c9)
@@ -184,7 +184,7 @@ Interpretation:
 
 If we look at the results we can see that for Instagram Usage again there is no significant result. But for Reddit Usage there is a significant relation. The correlation gave no significant relation for Sleep Quality vs Reddit Usage with a very close p value to 0.05 and the Chi-Square and T-Test gave there is significant relation between them. Since there is a different interpretation between different methods we can say that we can not reject null hypothesis. 
 
-3-SOCIAL INTERACTION
+## 3-SOCIAL INTERACTION
 
 The null hypothesis was that Social Interaction has no affect on social media usage. If we look at correlations between Social Interaction vs Reddit and Instagram Usage:
 ![resim](https://github.com/user-attachments/assets/d7b93ed5-3c33-4d14-9b67-02aec5697963)
@@ -216,7 +216,7 @@ Interpretation:
 
 If we look at the results we can say that for Instagram Usage there is no significant relation with Social Interaction. For Reddit, here we also have a significant relation so we can reject the null hypothesis for Reddit Usage vs Social Interaction. Generally we fail to reject it. 
 
-4-HOMEWORK AND PROJECTS
+## 4-HOMEWORK AND PROJECTS
 The null hypothesis was that Homework and Projects have no affect on social media usage. If we look at correlations between HW/Projects vs Reddit and Instagram Usage:
 ![resim](https://github.com/user-attachments/assets/6729e3d5-1ead-4979-b7ab-4f3c3bdad9db)
 ![resim](https://github.com/user-attachments/assets/1e63e5d1-c10a-4902-b239-807e1e05cce7)
