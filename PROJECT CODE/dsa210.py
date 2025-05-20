@@ -32,46 +32,61 @@ print("="*50)
 # Histograms for numerical columns (excluding Homework/Project)
 numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns
 
+custom_colors = {
+    'HW/Proj Exists': 'green',
+    "HW/Proj Doesn't Exist": 'red'
+}
+
+# Get a color palette for the rest of the distributions
+palette = sns.color_palette("Set2", len(numerical_cols))  # or "tab10"
+
 # Calculate number of rows needed (3 plots per row)
+numerical_cols = df.select_dtypes(include=['int64', 'float64']).columns
 num_cols = len(numerical_cols)
 num_rows = (num_cols + 2) // 3  # Ceiling division
-
+temp_df = pd.DataFrame({'HW/Proj Label': df['Homework/Project'].map({1: 'HW/Proj Exists', 0: "HW/Proj Doesn't Exist"})})
 # Create histograms
-plt.figure(figsize=(15, 5*num_rows))
+plt.figure(figsize=(15, 5 * num_rows))
 for i, col in enumerate(numerical_cols, 1):
     plt.subplot(num_rows, 3, i)
+
     if col in ['School Time', 'Travel Time', 'Sleep Time']:
-        # Create temporary dataframe with hours
-        temp_data = pd.DataFrame({col: df[col]/60})
-        sns.histplot(data=temp_data, x=col)
+        # Convert minutes to hours
+        temp_data = pd.DataFrame({col: df[col] / 60})
+        sns.histplot(data=temp_data, x=col, color=palette[i % len(palette)])
         plt.xlabel(f'{col} (Hours)')
+
     elif col == 'Homework/Project':
+        # Map binary values to labels
         temp_data = df[col].map({1: 'HW/Proj Exists', 0: "HW/Proj Doesn't Exist"})
-        sns.countplot(x=temp_data)
+        sns.countplot(data=temp_df, x='HW/Proj Label', hue='HW/Proj Label', palette=custom_colors, legend=False)
         plt.xlabel('Homework/Project Status')
+
     else:
-        sns.histplot(data=df, x=col)
+        sns.histplot(data=df, x=col, color=palette[i % len(palette)])
+
     plt.title(f'Distribution of {col}')
+
 plt.tight_layout()
 plt.show()
 
-# BOXPLOT VISUALIZATIONS
 print("\n" + "="*50)
 print("BOXPLOT VISUALIZATIONS")
 print("="*50)
 
 # Box plots for numerical columns (excluding Homework/Project)
-plt.figure(figsize=(15, 5*num_rows))
+plt.figure(figsize=(15, 5 * num_rows))
 for i, col in enumerate(numerical_cols, 1):
     plt.subplot(num_rows, 3, i)
     if col in ['School Time', 'Travel Time', 'Sleep Time']:
-        # Create temporary dataframe with hours
-        temp_data = pd.DataFrame({col: df[col]/60})
-        sns.boxplot(data=temp_data, y=col)
+        # Convert to hours
+        temp_data = pd.DataFrame({col: df[col] / 60})
+        sns.boxplot(data=temp_data, y=col, color='purple')
         plt.ylabel(f'{col} (Hours)')
     else:
-        sns.boxplot(data=df, y=col)
+        sns.boxplot(data=df, y=col, color='purple')
     plt.title(f'Box Plot of {col}')
+
 plt.tight_layout()
 plt.show()
 
@@ -126,100 +141,41 @@ daily_averages = df.agg({
 print("Daily Averages (Time in Hours):")
 print(daily_averages)
 
-# Compare School Time vs Reddit Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['School Time']/60, df['Reddit Usage'])
-plt.xlabel('School Time')
-plt.ylabel('Reddit Usage')
-plt.title('School Time vs Reddit Usage')
-plt.show()
+fig, axes = plt.subplots(6, 2, figsize=(16, 30))  # 6 rows, 2 cols; bigger height
+axes = axes.flatten()  # Flatten to make indexing easier
 
-# Compare School Time vs Instagram Usage
-plt.figure(figsize=(10, 6))
-sns.scatterplot(data=df, x=df['School Time']/60, y='Instagram Usage')
-plt.xlabel('School Time (Hours)')
-plt.ylabel('Instagram Usage Usage')
-plt.title('School Time vs Instagram Usage')
-plt.show()
+# Define your x and y variables with labels
+plot_info = [
+    ('School Time', 'Instagram Usage'),
+    ('School Time', 'Reddit Usage'),
+    ('Travel Time', 'Instagram Usage'),
+    ('Travel Time', 'Reddit Usage'),
+    ('Sleep Time', 'Instagram Usage'),
+    ('Sleep Time', 'Reddit Usage'),
+    ('Sleep Quality', 'Instagram Usage'),
+    ('Sleep Quality', 'Reddit Usage'),
+    ('Social Interaction', 'Instagram Usage'),
+    ('Social Interaction', 'Reddit Usage'),
+    ('Homework/Project', 'Instagram Usage'),
+    ('Homework/Project', 'Reddit Usage'),
+]
 
-#Compare Travel Time vs Reddit Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Travel Time']/60, df['Reddit Usage'])
-plt.xlabel('Travel Time')
-plt.ylabel('Reddit Usage')
-plt.title('Travel Time vs Reddit Usage')
-plt.show()
+# Plot each pair
+for i, (x_var, y_var) in enumerate(plot_info):
+    # Convert minutes to hours for time-based columns
+    if x_var in ['School Time', 'Travel Time', 'Sleep Time']:
+        x_data = df[x_var] / 60
+        x_label = f"{x_var} (Hours)"
+    else:
+        x_data = df[x_var]
+        x_label = x_var
 
-#Compare Travel Time vs Instagram Usage Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Travel Time']/60, df['Instagram Usage'])
-plt.xlabel('Travel Time')
-plt.ylabel('Instagram Usage')
-plt.title('Travel Time vs Instagram Usage')
-plt.show()
+    axes[i].scatter(x_data, df[y_var])
+    axes[i].set_xlabel(x_label)
+    axes[i].set_ylabel(y_var)
+    axes[i].set_title(f"{x_var} vs {y_var}")
 
-#Compare Sleep Time vs Reddit Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Sleep Time']/60, df['Reddit Usage'])
-plt.xlabel('Sleep Time')
-plt.ylabel('Reddit Usage')
-plt.title('Sleep Time vs Reddit Usage')
-plt.show()
-
-#Compare Sleep Time vs Instagram Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Sleep Time']/60, df['Instagram Usage'])
-plt.xlabel('Sleep Time')
-plt.ylabel('Instagram Usage')
-plt.title('Sleep Time vs Instagram Usage')
-plt.show()
-
-#Compare Sleep Quality vs Reddit Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Sleep Quality'], df['Reddit Usage'])
-plt.xlabel('Sleep Quality')
-plt.ylabel('Reddit Usage')
-plt.title('Sleep Quality vs Reddit Usage')
-plt.show()
-
-#Compare Sleep Quality vs Instagram Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Sleep Quality'], df['Instagram Usage'])
-plt.xlabel('Sleep Quality')
-plt.ylabel('Instagram Usage')
-plt.title('Sleep Quality vs Instagram Usage')
-plt.show()
-
-#Compare Social Interaction vs Reddit Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Social Interaction'], df['Reddit Usage'])
-plt.xlabel('Social Interaction')
-plt.ylabel('Reddit Usage')
-plt.title('Social Interaction vs Reddit Usage')
-plt.show()
-
-#Compare Social Interaction vs Instagram Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Social Interaction'], df['Instagram Usage'])
-plt.xlabel('Social Interaction')
-plt.ylabel('Instagram Usage')
-plt.title('Social Interaction vs Instagram Usage')
-plt.show()
-
-#Compare HW/Proj vs Reddit Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Homework/Project'], df['Reddit Usage'])
-plt.xlabel('Homework/Project')
-plt.ylabel('Reddit Usage')
-plt.title('Homework/Project vs Reddit Usage')
-plt.show()
-
-#Compare HW/Proj vs Instagram Usage
-plt.figure(figsize=(10, 6))
-plt.scatter(df['Homework/Project'], df['Instagram Usage'])
-plt.xlabel('Homework/Project')
-plt.ylabel('Instagram Usage')
-plt.title('Homework/Project vs Instagram Usage')
+plt.tight_layout()
 plt.show()
 
 # List of pairs to analyze
@@ -350,6 +306,7 @@ print("="*50)
 for var in variables_to_test:
     perform_statistical_tests(var, 'Instagram Usage')
 
+
 # Perform tests for Reddit
 print("\n" + "="*50)
 print("STATISTICAL TESTS FOR REDDIT USAGE")
@@ -357,16 +314,231 @@ print("="*50)
 for var in variables_to_test:
     perform_statistical_tests(var, 'Reddit Usage')
 
+custom_palette = {"Doesn't Exist": 'red', 'Exists': 'green'}
+
+# Ensure the label column exists
 df['HW/Proj Label'] = df['Homework/Project'].map({0: "Doesn't Exist", 1: 'Exists'})
-sns.boxplot(data=df, x='HW/Proj Label', y='Reddit Usage')
+
+# Reddit Usage
+sns.boxplot(data=df, x='HW/Proj Label', y='Reddit Usage', hue='HW/Proj Label', palette=custom_palette, legend=False)
 plt.title('Reddit Usage vs Homework/Project Presence')
 plt.ylabel('Reddit Usage (e.g., minutes)')
 plt.xlabel('Homework/Project')
 plt.show()
 
-df['HW/Proj Label'] = df['Homework/Project'].map({0: "Doesn't Exist", 1: 'Exists'})
-sns.boxplot(data=df, x='HW/Proj Label', y='Instagram Usage')
+# Instagram Usage
+sns.boxplot(data=df, x='HW/Proj Label', y='Instagram Usage', hue='HW/Proj Label', palette=custom_palette, legend=False)
 plt.title('Instagram Usage vs Homework/Project Presence')
 plt.ylabel('Instagram Usage (e.g., minutes)')
 plt.xlabel('Homework/Project')
+plt.show()
+
+features = ['School Time', 'Travel Time', 'Sleep Time', 'Sleep Quality',
+            'Social Interaction', 'Homework/Project']
+X = df[features]
+y = df['Youtube Usage']
+
+# Train-test split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+model_lr = LinearRegression()
+model_lr.fit(X_train, y_train)
+y_pred_lr = model_lr.predict(X_test)
+
+rmse_lr = np.sqrt(mean_squared_error(y_test, y_pred_lr))
+mae_lr = mean_absolute_error(y_test, y_pred_lr)
+r2_lr = r2_score(y_test, y_pred_lr)
+
+print("Linear Regression (YouTube Usage):")
+print(f" - RMSE: {rmse_lr:.2f}")
+print(f" - MAE: {mae_lr:.2f}")
+print(f" - R² Score: {r2_lr:.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test, y_pred_lr, alpha=0.7, color='skyblue')
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--')
+plt.xlabel("Actual YouTube Usage")
+plt.ylabel("Predicted YouTube Usage")
+plt.title("Linear Regression: Actual vs Predicted YouTube Usage")
+plt.grid(True)
+plt.show()
+
+print("---------------------------------------------------------------------")
+print()
+
+model_dt = DecisionTreeRegressor(random_state=42)
+model_dt.fit(X_train, y_train)
+y_pred_dt = model_dt.predict(X_test)
+
+rmse_dt = np.sqrt(mean_squared_error(y_test, y_pred_dt))
+mae_dt = mean_absolute_error(y_test, y_pred_dt)
+r2_dt = r2_score(y_test, y_pred_dt)
+
+print("\nDecision Tree Regression (YouTube Usage):")
+print(f" - RMSE: {rmse_dt:.2f}")
+print(f" - MAE: {mae_dt:.2f}")
+print(f" - R² Score: {r2_dt:.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test, y_pred_dt, alpha=0.7, color='orange')
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--')
+plt.xlabel("Actual YouTube Usage")
+plt.ylabel("Predicted YouTube Usage")
+plt.title("Decision Tree: Actual vs Predicted YouTube Usage")
+plt.grid(True)
+plt.show()
+
+print("---------------------------------------------------------------------")
+print()
+
+model_rf = RandomForestRegressor(random_state=42)
+model_rf.fit(X_train, y_train)
+y_pred_rf = model_rf.predict(X_test)
+
+rmse_rf = np.sqrt(mean_squared_error(y_test, y_pred_rf))
+mae_rf = mean_absolute_error(y_test, y_pred_rf)
+r2_rf = r2_score(y_test, y_pred_rf)
+
+print("\nRandom Forest Regression (YouTube Usage):")
+print(f" - RMSE: {rmse_rf:.2f}")
+print(f" - MAE: {mae_rf:.2f}")
+print(f" - R² Score: {r2_rf:.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test, y_pred_rf, alpha=0.7, color='green')
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--')
+plt.xlabel("Actual YouTube Usage")
+plt.ylabel("Predicted YouTube Usage")
+plt.title("Random Forest: Actual vs Predicted YouTube Usage")
+plt.grid(True)
+plt.show()
+
+# 1. Predicting Instagram Usage
+X_instagram = df[features]
+y_instagram = df['Instagram Usage']
+X_train_i, X_test_i, y_train_i, y_test_i = train_test_split(X_instagram, y_instagram, test_size=0.2, random_state=42)
+
+lr_i = LinearRegression()
+lr_i.fit(X_train_i, y_train_i)
+y_pred_lr_i = lr_i.predict(X_test_i)
+
+print("Instagram Usage - Linear Regression:")
+print(f" - RMSE: {np.sqrt(mean_squared_error(y_test_i, y_pred_lr_i)):.2f}")
+print(f" - MAE: {mean_absolute_error(y_test_i, y_pred_lr_i):.2f}")
+print(f" - R² Score: {r2_score(y_test_i, y_pred_lr_i):.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test_i, y_pred_lr_i, alpha=0.7, color='orchid')
+plt.plot([y_test_i.min(), y_test_i.max()], [y_test_i.min(), y_test_i.max()], 'r--')
+plt.xlabel("Actual Instagram Usage")
+plt.ylabel("Predicted Instagram Usage")
+plt.title("Linear Regression: Actual vs Predicted Instagram Usage")
+plt.grid(True)
+plt.show()
+
+print("---------------------------------------------------------------------")
+print()
+
+dt_i = DecisionTreeRegressor(random_state=42)
+dt_i.fit(X_train_i, y_train_i)
+y_pred_dt_i = dt_i.predict(X_test_i)
+
+print("Instagram Usage - Decision Tree:")
+print(f" - RMSE: {np.sqrt(mean_squared_error(y_test_i, y_pred_dt_i)):.2f}")
+print(f" - MAE: {mean_absolute_error(y_test_i, y_pred_dt_i):.2f}")
+print(f" - R² Score: {r2_score(y_test_i, y_pred_dt_i):.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test_i, y_pred_dt_i, alpha=0.7, color='tomato')
+plt.plot([y_test_i.min(), y_test_i.max()], [y_test_i.min(), y_test_i.max()], 'r--')
+plt.xlabel("Actual Instagram Usage")
+plt.ylabel("Predicted Instagram Usage")
+plt.title("Decision Tree: Actual vs Predicted Instagram Usage")
+plt.grid(True)
+plt.show()
+
+print("---------------------------------------------------------------------")
+print()
+
+rf_i = RandomForestRegressor(random_state=42)
+rf_i.fit(X_train_i, y_train_i)
+y_pred_rf_i = rf_i.predict(X_test_i)
+
+print("Instagram Usage - Random Forest:")
+print(f" - RMSE: {np.sqrt(mean_squared_error(y_test_i, y_pred_rf_i)):.2f}")
+print(f" - MAE: {mean_absolute_error(y_test_i, y_pred_rf_i):.2f}")
+print(f" - R² Score: {r2_score(y_test_i, y_pred_rf_i):.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test_i, y_pred_rf_i, alpha=0.7, color='forestgreen')
+plt.plot([y_test_i.min(), y_test_i.max()], [y_test_i.min(), y_test_i.max()], 'r--')
+plt.xlabel("Actual Instagram Usage")
+plt.ylabel("Predicted Instagram Usage")
+plt.title("Random Forest: Actual vs Predicted Instagram Usage")
+plt.grid(True)
+plt.show()
+
+# 3. Predicting Reddit Usage
+X_reddit = df[features]
+y_reddit = df['Reddit Usage']
+X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(X_reddit, y_reddit, test_size=0.2, random_state=42)
+
+lr_r = LinearRegression()
+lr_r.fit(X_train_r, y_train_r)
+y_pred_lr_r = lr_r.predict(X_test_r)
+
+print("Reddit Usage - Linear Regression:")
+print(f" - RMSE: {np.sqrt(mean_squared_error(y_test_r, y_pred_lr_r)):.2f}")
+print(f" - MAE: {mean_absolute_error(y_test_r, y_pred_lr_r):.2f}")
+print(f" - R² Score: {r2_score(y_test_r, y_pred_lr_r):.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test_r, y_pred_lr_r, alpha=0.7, color='dodgerblue')
+plt.plot([y_test_r.min(), y_test_r.max()], [y_test_r.min(), y_test_r.max()], 'r--')
+plt.xlabel("Actual Reddit Usage")
+plt.ylabel("Predicted Reddit Usage")
+plt.title("Linear Regression: Actual vs Predicted Reddit Usage")
+plt.grid(True)
+plt.show()
+
+print("---------------------------------------------------------------------")
+print()
+
+dt_r = DecisionTreeRegressor(random_state=42)
+dt_r.fit(X_train_r, y_train_r)
+y_pred_dt_r = dt_r.predict(X_test_r)
+
+print("Reddit Usage - Decision Tree:")
+print(f" - RMSE: {np.sqrt(mean_squared_error(y_test_r, y_pred_dt_r)):.2f}")
+print(f" - MAE: {mean_absolute_error(y_test_r, y_pred_dt_r):.2f}")
+print(f" - R² Score: {r2_score(y_test_r, y_pred_dt_r):.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test_r, y_pred_dt_r, alpha=0.7, color='coral')
+plt.plot([y_test_r.min(), y_test_r.max()], [y_test_r.min(), y_test_r.max()], 'r--')
+plt.xlabel("Actual Reddit Usage")
+plt.ylabel("Predicted Reddit Usage")
+plt.title("Decision Tree: Actual vs Predicted Reddit Usage")
+plt.grid(True)
+plt.show()
+
+print("---------------------------------------------------------------------")
+print()
+
+rf_r = RandomForestRegressor(random_state=42)
+rf_r.fit(X_train_r, y_train_r)
+y_pred_rf_r = rf_r.predict(X_test_r)
+
+print("Reddit Usage - Random Forest:")
+print(f" - RMSE: {np.sqrt(mean_squared_error(y_test_r, y_pred_rf_r)):.2f}")
+print(f" - MAE: {mean_absolute_error(y_test_r, y_pred_rf_r):.2f}")
+print(f" - R² Score: {r2_score(y_test_r, y_pred_rf_r):.2f}")
+
+plt.figure(figsize=(8, 5))
+plt.scatter(y_test_r, y_pred_rf_r, alpha=0.7, color='mediumseagreen')
+plt.plot([y_test_r.min(), y_test_r.max()], [y_test_r.min(), y_test_r.max()], 'r--')
+plt.xlabel("Actual Reddit Usage")
+plt.ylabel("Predicted Reddit Usage")
+plt.title("Random Forest: Actual vs Predicted Reddit Usage")
+plt.grid(True)
 plt.show()
