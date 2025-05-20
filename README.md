@@ -231,6 +231,39 @@ The mean of Reddit Usage is higher when a homework/project exists. The mean of I
 -Logically we can see a pattern here. When I am at school I use Reddit more than Instagram. We can understand it by looking at school time and travel time datas. Also since I sleep less when I go to school my Reddit Usage has a significant relation with Sleep Time and Sleep Quality but of course these are my thoughts. Also since I have more social interaction at school Reddit Usage is also being affected by it. Similarly when I have more homeworks or projects I spend more time at school so it is also affecting Reddit Usage.
 
 
+## MACHINE LEARNING:
+-Here I tried to predict another social media application I use: Youtube. Using the same data set I had for Reddit and Instagram I tried predicting the screen time of my Youtube usage using Linear Regression, Decision Tree and Random Forest seperately.
+
+![resim](https://github.com/user-attachments/assets/a1e64d7f-1350-49c8-a473-8099fc370c24)
+![resim](https://github.com/user-attachments/assets/7867499b-0ba5-4cdb-93d2-e8dcd12dfe4c)
+![resim](https://github.com/user-attachments/assets/1f071a8b-c8df-434a-a37c-90c4653c4a38)
+
+
+
+-Here my Youtube Usage data is likely to be non-linear since Random Forest is a better fit than Linear Regression and is the best among three. 
+-However none of the models explain the data significantly, so from here we can say that maybe Youtube data is affected by other data sets I dont have in my data or the relationship between Youtube usage and the indicators in my data is more complex than I think.
+
+-----------------------------------------------------------------------------------------
+
+-Here I tried to predict Instagram Usage and Reddit Usage by using Linear Regression, Decision Tree and Random Forest as well:
+Instagram:
+
+![resim](https://github.com/user-attachments/assets/e5f6d840-afe5-48b0-869e-9b87611e1dfd)
+![resim](https://github.com/user-attachments/assets/e5a5776a-b39b-457a-a3db-dfd6f84b0da2)
+![resim](https://github.com/user-attachments/assets/33198868-28e5-4380-8cd7-ba855c94e5ef)
+
+
+Reddit:
+
+![resim](https://github.com/user-attachments/assets/e67e8b25-f1a4-4d8e-b266-0bb6432703e7)
+![resim](https://github.com/user-attachments/assets/89da84c4-2223-4732-8f6f-5fbb272033ea)
+![resim](https://github.com/user-attachments/assets/2cbe01cf-24fe-4335-b082-2083ffcd629a)
+
+
+-Here Instagram usage prediction is definitely more precise than Youtube prediction, but still Random Forest is the strongest among three. From the results we can also say that the Instagram Usage data is not purely non-linear. There are likely non-linear relationships and interactions between my data and Instagram Usage.
+
+-However in Reddit Usage prediction we see a huge performance difference between Linear Regression and tree based models meaning that non-linear interactions dominate the prediction of Reddit usage.
+
 
 
 
