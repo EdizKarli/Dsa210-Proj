@@ -243,6 +243,7 @@ The mean of Reddit Usage is higher when a homework/project exists. The mean of I
 
 
 -Here my Youtube Usage is best preditected by Support Vector Regression since it has the lowest error results for RMSE and MAE and has the highest R square value. It achieves the best balance between low error rates and variance explanation. KNN and Decision Tree also show similar results but they have higher error rates and lower R square value. 
+
 -However none of the models explain the data significantly, so from here we can say that maybe Youtube data is affected by other data sets I dont have in my data or the relationship between Youtube usage and the indicators in my data is more complex than I think.
 
 -----------------------------------------------------------------------------------------
@@ -259,6 +260,7 @@ Instagram:
 
 
 -Here if we look at the data we can see that Support Vector Regression is the best model for predicting Instagram Usage with the highest R squared and lowest errors results. It captures nonlinear patterns well and outperforms other models. Random Forest and KNN also performs strong, but not as much as SVR.
+
 -Compared to the results for YouTube Usage the models for Instagram Usage performed better likely because the data was first gathered to make comparision between Reddit and Instagram Usage and Youtube usage was not considered in the early stages of project planning. 
 
 
@@ -274,6 +276,7 @@ Reddit:
 
 
 -Here if we look at the data we can see that Random Forest Regression is the best model for Reddit Usage with the highest R squared and lowest error results. Decision Tree Regression also provides strong results with simpler structure. Since Linear Regression and SVR underperform we can say that Reddit usage is influenced by nonlinear factors most of the time.
+
 -Out of all the result we had, the R square for Random Forest with 0.85 was the highest one. Suggesting that the data set I have is affective the most when we try to predict my Reddit Usage.
 
 
