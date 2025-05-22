@@ -232,25 +232,35 @@ The mean of Reddit Usage is higher when a homework/project exists. The mean of I
 
 
 ## MACHINE LEARNING:
--Here I tried to predict another social media application I use: Youtube. Using the same data set I had for Reddit and Instagram I tried predicting the screen time of my Youtube usage using Linear Regression, Decision Tree and Random Forest seperately.
+-Here I tried to predict another social media application I use: Youtube. Using the same data set I had for Reddit and Instagram I tried predicting the screen time of my Youtube usage using Linear Regression, Decision Tree and Random Forest, Support Vector Regression, KNN Regression and Gradient Boosting seperately.
 
 ![resim](https://github.com/user-attachments/assets/a1e64d7f-1350-49c8-a473-8099fc370c24)
 ![resim](https://github.com/user-attachments/assets/7867499b-0ba5-4cdb-93d2-e8dcd12dfe4c)
 ![resim](https://github.com/user-attachments/assets/1f071a8b-c8df-434a-a37c-90c4653c4a38)
+![resim](https://github.com/user-attachments/assets/c0d856b2-427c-47a4-80fd-bf206a78f6e2)
+![resim](https://github.com/user-attachments/assets/0662b66c-b274-4030-a431-4f795f9a1899)
+![resim](https://github.com/user-attachments/assets/0f9476b2-6f97-49ca-be3b-2340aca3f24e)
 
 
-
--Here my Youtube Usage data is likely to be non-linear since Random Forest is a better fit than Linear Regression and is the best among three. 
+-Here my Youtube Usage is best preditected by Support Vector Regression since it has the lowest error results for RMSE and MAE and has the highest R square value. It achieves the best balance between low error rates and variance explanation. KNN and Decision Tree also show similar results but they have higher error rates and lower R square value. 
 -However none of the models explain the data significantly, so from here we can say that maybe Youtube data is affected by other data sets I dont have in my data or the relationship between Youtube usage and the indicators in my data is more complex than I think.
 
 -----------------------------------------------------------------------------------------
 
--Here I tried to predict Instagram Usage and Reddit Usage by using Linear Regression, Decision Tree and Random Forest as well:
+-Here I tried to predict Instagram Usage and Reddit Usage by using Linear Regression, Decision Tree, Random Forest, Support Vector Regression, KNN Regression and Gradient Boost as well:
 Instagram:
 
 ![resim](https://github.com/user-attachments/assets/e5f6d840-afe5-48b0-869e-9b87611e1dfd)
 ![resim](https://github.com/user-attachments/assets/e5a5776a-b39b-457a-a3db-dfd6f84b0da2)
 ![resim](https://github.com/user-attachments/assets/33198868-28e5-4380-8cd7-ba855c94e5ef)
+![resim](https://github.com/user-attachments/assets/0a49b9d5-1b34-4026-baba-7eaa90d2ddc0)
+![resim](https://github.com/user-attachments/assets/2569a540-81d7-486e-bd13-a3a5096d063e)
+![resim](https://github.com/user-attachments/assets/b1e016fd-dba0-474b-8e41-c9a7b858c9cb)
+
+
+-Here if we look at the data we can see that Support Vector Regression is the best model for predicting Instagram Usage with the highest R squared and lowest errors results. It captures nonlinear patterns well and outperforms other models. Random Forest and KNN also performs strong, but not as much as SVR.
+-Compared to the results for YouTube Usage the models for Instagram Usage performed better likely because the data was first gathered to make comparision between Reddit and Instagram Usage and Youtube usage was not considered in the early stages of project planning. 
+
 
 
 Reddit:
@@ -258,11 +268,13 @@ Reddit:
 ![resim](https://github.com/user-attachments/assets/e67e8b25-f1a4-4d8e-b266-0bb6432703e7)
 ![resim](https://github.com/user-attachments/assets/89da84c4-2223-4732-8f6f-5fbb272033ea)
 ![resim](https://github.com/user-attachments/assets/2cbe01cf-24fe-4335-b082-2083ffcd629a)
+![resim](https://github.com/user-attachments/assets/2ea5cfd4-909b-49ad-8806-32f599d7c27e)
+![resim](https://github.com/user-attachments/assets/01188e6a-d8a7-42b8-979f-5f1166f751ae)
+![resim](https://github.com/user-attachments/assets/78769eaf-f4f7-4855-b2b5-192fd472037e)
 
 
--Here Instagram usage prediction is definitely more precise than Youtube prediction, but still Random Forest is the strongest among three. From the results we can also say that the Instagram Usage data is not purely non-linear. There are likely non-linear relationships and interactions between my data and Instagram Usage.
-
--However in Reddit Usage prediction we see a huge performance difference between Linear Regression and tree based models meaning that non-linear interactions dominate the prediction of Reddit usage.
+-Here if we look at the data we can see that Random Forest Regression is the best model for Reddit Usage with the highest R squared and lowest error results. Decision Tree Regression also provides strong results with simpler structure. Since Linear Regression and SVR underperform we can say that Reddit usage is influenced by nonlinear factors most of the time.
+-Out of all the result we had, the R square for Random Forest with 0.85 was the highest one. Suggesting that the data set I have is affective the most when we try to predict my Reddit Usage.
 
 
 
