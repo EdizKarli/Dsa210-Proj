@@ -13,12 +13,13 @@ In this project my aim is to analyze the frequency of my social media usage and 
 - **Social Interaction**: In terms of numbers, it will start with 0 and with every non-family member who I talk more than 3 minutes I will add one to it.
 - **Reddit Usage**: Will be collected from the settings part of my smart phone
 - **Instagram Usage**: Will be collected from the settings part of my smart phone
+- **Youtube Usage**: Will be collected from the settings part of my smart phone
 # DATA COLLECTION
 - Data will be collected for 30 days. (14th March to 13th April)
 - Sources:
     - Smartwatch application for sleep time and quality
     - Google Maps for school time and travel time
-    - Settings part of my smart phone to gather hourly usage of two social media I use (Reddit and Instagram)
+    - Settings part of my smart phone to gather hourly usage of two social media I use (Reddit,Instagram and Youtube)
 - To ensure consistency and minimize bias:
     - Information will be recorded daily
     - Data will be systematically organized and accessible.
